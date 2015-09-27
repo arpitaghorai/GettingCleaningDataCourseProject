@@ -24,9 +24,6 @@ setnames(allActivity, "V1", "activityNum")
 #combine the DATA training and test files
 datatable <- rbind(dataTrain, dataTest)
 
-#column names for activity labels
-activityLabels<- tbl_df(read.table(file.path(path, "activity_labels.txt")))
-setnames(activityLabels, names(activityLabels), c("activityNum","activityName"))
 
 # Merge columns
 alldataSubject <- cbind(allSubject, allActivity)
@@ -43,17 +40,23 @@ colnames(datatable) <- dataFeatures$featureName
 # Reading "features.txt" and extracting only the mean and standard deviation
 dataFeaturesMeanStd <- grep("mean\\(\\)|std\\(\\)",dataFeatures$featureName,value=TRUE) 
 
+# 3--------
+#column names for activity labels
+activityLabels<- tbl_df(read.table(file.path(path, "activity_labels.txt")))
+setnames(activityLabels, names(activityLabels), c("activityNum","activityName"))
+
 # Taking only measurements for the mean and standard deviation and add "subject","activityNum"
 dataFeaturesMeanStd <- union(c("subject","activityNum"), dataFeaturesMeanStd)
 datatable <- subset(datatable, select=dataFeaturesMeanStd)
-
-#3 & 4
 # enter the name of activity into datatable
 datatable <- merge(activityLabels, datatable, by="activityNum", all.x=TRUE)
+
+# 4-----------
 datatable$activityName <- as.character(datatable$activityName)
 # create dataTable with variable means sorted by subject and Activity
 dataAggr <- aggregate(. ~ subject - activityName, data = datatable, mean)
 datatable <- tbl_df(arrange(dataAggr,subject,activityname))
+
 #5
 #write a text file
 write.table(datatable, "TidyData.txt", row.name=FALSE)

@@ -17,4 +17,33 @@ The five steps to complete the Course Project are:
 5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
 
+It should run in a folder of the Samsung data (the zip had this folder: UCI HAR Dataset) The script assumes it has in it's working directory the following files and folders:
 
+activity_labels.txt
+features.txt
+test/
+train/
+
+run_analysis.R steps:
+
+Step 1:
+
+Read all the test and training files: y_test.txt, subject_test.txt and X_test.txt.
+Combine the files to a data frame in the form of subjects, labels, the rest of the data.
+
+Step 2:
+
+Read the features from features.txt and extract only the mean and standard deviation.
+A new data frame is then created that includes subjects, labels and the described features.
+
+Step 3:
+
+Read the activity labels from activity_labels.txt and enter the name of activity into datatable.
+
+Step4:
+Make a column list (includig "subjects" and "label" at the start)
+Create a new data frame by finding the mean for each combination of subject and label. It's done by aggregate() function
+
+Step 5:
+
+Write the new tidy set into a text file called tidy2.txt, formatted similarly to the original files.
