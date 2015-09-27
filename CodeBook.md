@@ -41,7 +41,8 @@ fBodyGyroJerkMag
 
 label
 	
-Activity label :
+Activity label:
+
 1. WALKING
 
 2. WALKING_UPSTAIRS
