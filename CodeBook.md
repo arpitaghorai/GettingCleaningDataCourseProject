@@ -40,15 +40,17 @@ fBodyGyroJerkMag
 
 
 label
-	Activity label :1 WALKING
+	
+Activity label :
+1. WALKING
 
-			2 WALKING_UPSTAIRS
+2. WALKING_UPSTAIRS
 
-			3 WALKING_DOWNSTAIRS
-			
-4 SITTING
-			
-5 STANDING
+3. WALKING_DOWNSTAIRS
 
-			6 LAYING
+4. SITTING
+
+5. STANDING
+
+6. LAYING
 
